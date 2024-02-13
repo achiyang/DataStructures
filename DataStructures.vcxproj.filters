@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="test">
+      <UniqueIdentifier>{bb2b3d29-3b93-419d-bfc1-5101ccca39dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="common">
+      <UniqueIdentifier>{98df87e8-28c2-42db-815b-8c94571999df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DataStructure">
+      <UniqueIdentifier>{caa4884e-35f4-4ea1-a665-d5fcb60231f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DataStructure\stack">
+      <UniqueIdentifier>{492b238a-e3d6-42e8-93da-1842cf19ad11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DataStructure\queue">
+      <UniqueIdentifier>{4b99da31-0364-4ff6-9f7d-4e398852fc2f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DataStructure\priority_queue">
+      <UniqueIdentifier>{91b0353c-3b0d-4b10-b161-0c451f9b2376}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DataStructure\deque">
+      <UniqueIdentifier>{1d7f797d-d681-4701-86c0-95f8979e737d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="priority_queue.c">
+      <Filter>DataStructure\priority_queue</Filter>
+    </ClCompile>
+    <ClCompile Include="deque.c">
+      <Filter>DataStructure\deque</Filter>
+    </ClCompile>
+    <ClCompile Include="queue.c">
+      <Filter>DataStructure\queue</Filter>
+    </ClCompile>
+    <ClCompile Include="test.c">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="stack.c">
+      <Filter>DataStructure\stack</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="priority_queue.h">
+      <Filter>DataStructure\priority_queue</Filter>
+    </ClInclude>
+    <ClInclude Include="deque.h">
+      <Filter>DataStructure\deque</Filter>
+    </ClInclude>
+    <ClInclude Include="queue.h">
+      <Filter>DataStructure\queue</Filter>
+    </ClInclude>
+    <ClInclude Include="types.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="stack.h">
+      <Filter>DataStructure\stack</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
