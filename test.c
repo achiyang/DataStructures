@@ -17,10 +17,10 @@ static int comparePerson(const datap a, const datap b) {
 	p1 = (struct Person*)a;
 	p2 = (struct Person*)b;
 
-	if (strcmp(p2->name, p1->name) != 0)
-		return strcmp(p2->name, p1->name); // 이름이 사전순으로 앞일수록 우선순위가 큼
-	else
-		return p2->age - p1->age; // 나이가 적을수록 우선순위가 큼
+	if (strcmp(p2->name, p1->name) != 0)	// 이름이 다르다면
+		return strcmp(p2->name, p1->name);		// 이름이 사전순으로 앞일수록 우선순위가 큼
+	else									// 이름이 같다면
+		return p2->age - p1->age;				// 나이가 적을수록 우선순위가 큼
 }
 
 int main() {
@@ -28,7 +28,7 @@ int main() {
 	initDeque(&deque);
 
 	pushFrontDeque(&deque, (datap)(intptr_t)1);
-	printf("popBackDeque: %d\n", (int)(intptr_t)popBackDeque(&deque));
+	printf("popBackDeque: %lld\n", (intptr_t)popBackDeque(&deque));
 
 	destroyDeque(&deque);
 
