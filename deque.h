@@ -1,7 +1,7 @@
 #ifndef DEQUE_H
 #define DEQUE_H
 
-#include "types.h"
+#include "dsutils.h"
 
 /*
 	Deque ±¸Á¶Ã¼:

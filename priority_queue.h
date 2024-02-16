@@ -1,7 +1,7 @@
 #ifndef PRIORITY_QUEUE_H
 #define	PRIORITY_QUEUE_H
 
-#include "types.h"
+#include "dsutils.h"
 
 /*
 	comparePriorityFunc 함수 포인터:

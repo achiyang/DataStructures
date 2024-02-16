@@ -50,7 +50,7 @@
     <ClInclude Include="queue.h">
       <Filter>DataStructure\queue</Filter>
     </ClInclude>
-    <ClInclude Include="types.h">
+    <ClInclude Include="dsutils.h">
       <Filter>common</Filter>
     </ClInclude>
     <ClInclude Include="stack.h">
