@@ -55,7 +55,8 @@ static void heapify(PriorityQueue* pqueue) {
 		}
 	}
 }
- /* 우선순위 큐에 데이터를 삽입하는 함수 */
+
+/* 우선순위 큐에 데이터를 삽입하는 함수 */
 void enpqueue(PriorityQueue* pqueue, datap data) {
 	int index;
 

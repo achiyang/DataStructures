@@ -14,7 +14,7 @@
 	- 반대의 경우 음수를 반환합니다.
 	- 우선순위가 같은 경우 0을 반환합니다.
 */
-typedef int (*comparePriorityFunc)(const datap, const datap);
+typedef int (*comparePriorityFunc)(datap, datap);
 
 /*
 	PriorityQueue 구조체:
