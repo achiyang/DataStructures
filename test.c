@@ -14,8 +14,8 @@ struct Person {
 static int comparePerson(const datap a, const datap b) {
 	struct Person *p1, *p2;
 
-	p1 = (struct Person*)a;
-	p2 = (struct Person*)b;
+	p1 = (struct Person *)a;
+	p2 = (struct Person *)b;
 
 	if (strcmp(p2->name, p1->name) != 0)	// 이름이 다르다면
 		return strcmp(p2->name, p1->name);		// 이름이 사전순으로 앞일수록 우선순위가 큼
@@ -33,7 +33,7 @@ int main() {
 	destroyDeque(&deque);
 
 
-	Queue* queue = (Queue*)malloc(sizeof(Queue));
+	Queue *queue = (Queue *)malloc(sizeof(Queue));
 	if (queue == NULL) exit(EXIT_FAILURE);
 	initQueue(queue);
 
@@ -59,7 +59,7 @@ int main() {
 		enpqueue(&pqueue, &array[i]);
 
 	while (pqueue.cnt > 0) {
-		struct Person* temp = depqueue(&pqueue);
+		struct Person *temp = depqueue(&pqueue);
 		printf("%s %d\n", temp->name, temp->age);
 	}
 
@@ -72,7 +72,7 @@ int main() {
 	pushStack(&stack, comparePerson);
 	printf(
 		"comparePriority({ \"John\", 30 }, { \"John\", 20 }) = %d\n",
-		((comparePriorityFunc)popStack(&stack))(&array[0], &array[1])
+		((compareDatapFunc)popStack(&stack))(&array[0], &array[1])
 	);
 
 	destroyStack(&stack);

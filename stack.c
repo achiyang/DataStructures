@@ -4,8 +4,8 @@
 #define MIN_STACK_SIZE 8
 
 /* 스택의 크기를 조절하는 함수 */
-static void resize(Stack* stack, size_t size) {
-	datap* temp_arr;
+static void resize(Stack *stack, size_t size) {
+	datap *temp_arr;
 
 	if (size <= INT_MAX)
 		stack->size = size;
@@ -19,7 +19,7 @@ static void resize(Stack* stack, size_t size) {
 }
 
 /* 스택에 데이터를 삽입하는 함수 */
-void pushStack(Stack* stack, datap data) {
+void pushStack(Stack *stack, datap data) {
 	stack->top++;
 
 	if (stack->top >= stack->size)
@@ -29,7 +29,7 @@ void pushStack(Stack* stack, datap data) {
 }
 
 /* 스택에서 데이터를 추출하는 함수 */
-datap popStack(Stack* stack) {
+datap popStack(Stack *stack) {
 	datap ret;
 
 	if (stack->top < 0)
@@ -44,16 +44,16 @@ datap popStack(Stack* stack) {
 }
 
 /* 스택을 초기화하는 함수 */
-void initStack(Stack* stack) {
+void initStack(Stack *stack) {
 	stack->size = MIN_STACK_SIZE;
-	stack->arr = (datap*)malloc(sizeof(datap) * stack->size);
+	stack->arr = (datap *)malloc(sizeof(datap) * stack->size);
 	if (stack->arr == NULL)
 		exit(EXIT_FAILURE);
 	stack->top = -1;
 }
 
 /* 스택을 해제하는 함수 */
-void destroyStack(Stack* stack) {
+void destroyStack(Stack *stack) {
 	free(stack->arr);
 	stack->size = 0;
 	stack->top = -1;

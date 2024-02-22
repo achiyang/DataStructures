@@ -5,8 +5,8 @@
 #define MIN_DEQUE_SIZE 8
 
 /* 덱의 크기를 조정하는 함수 */
-static void resize(Deque* deque, size_t size) {
-	datap* new_arr;
+static void resize(Deque *deque, size_t size) {
+	datap *new_arr;
 	int new_size;
 
 	if (size <= INT_MAX)
@@ -14,7 +14,7 @@ static void resize(Deque* deque, size_t size) {
 	else
 		new_size = INT_MAX;
 
-	new_arr = (datap*)malloc(sizeof(datap) * new_size);
+	new_arr = (datap *)malloc(sizeof(datap) * new_size);
 	if (new_arr == NULL)
 		exit(EXIT_FAILURE);
 
@@ -34,7 +34,7 @@ static void resize(Deque* deque, size_t size) {
 }
 
 /* 덱의 뒤에 데이터를 추가하는 함수 */
-void pushBackDeque(Deque* deque, datap data) {
+void pushBackDeque(Deque *deque, datap data) {
 	if (deque->cnt >= deque->size)
 		resize(deque, (size_t)deque->size * 2);
 
@@ -46,7 +46,7 @@ void pushBackDeque(Deque* deque, datap data) {
 }
 
 /* 덱의 앞에 데이터를 추가하는 함수 */
-void pushFrontDeque(Deque* deque, datap data) {
+void pushFrontDeque(Deque *deque, datap data) {
 	if (deque->cnt >= deque->size)
 		resize(deque, (size_t)deque->size * 2);
 
@@ -58,7 +58,7 @@ void pushFrontDeque(Deque* deque, datap data) {
 }
 
 /* 덱의 뒤에서 데이터를 추출하는 함수 */
-datap popBackDeque(Deque* deque) {
+datap popBackDeque(Deque *deque) {
 	datap ret;
 
 	if (deque->cnt <= 0)
@@ -76,7 +76,7 @@ datap popBackDeque(Deque* deque) {
 }
 
 /* 덱의 앞에서 데이터를 추출하는 함수 */
-datap popFrontDeque(Deque* deque) {
+datap popFrontDeque(Deque *deque) {
 	datap ret;
 
 	if (deque->cnt <= 0)
@@ -94,7 +94,7 @@ datap popFrontDeque(Deque* deque) {
 }
 
 /* 덱을 초기화하는 함수 */
-void initDeque(Deque* deque) {
+void initDeque(Deque *deque) {
 	deque->size = MIN_DEQUE_SIZE;
 	deque->arr = malloc(sizeof(datap) * deque->size);
 	if (deque->arr == NULL)
@@ -105,7 +105,7 @@ void initDeque(Deque* deque) {
 }
 
 /* 덱을 해제하는 함수 */
-void destroyDeque(Deque* deque) {
+void destroyDeque(Deque *deque) {
 	free(deque->arr);
 	deque->arr = NULL;
 	deque->size = 0;

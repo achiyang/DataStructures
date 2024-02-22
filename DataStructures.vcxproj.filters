@@ -22,6 +22,9 @@
     <Filter Include="DataStructure\deque">
       <UniqueIdentifier>{1d7f797d-d681-4701-86c0-95f8979e737d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="DataStructure\linked_list">
+      <UniqueIdentifier>{859ab22a-1735-470a-9e43-7386fd70f9db}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="priority_queue.c">
@@ -39,6 +42,9 @@
     <ClCompile Include="stack.c">
       <Filter>DataStructure\stack</Filter>
     </ClCompile>
+    <ClCompile Include="linkedlist.c">
+      <Filter>DataStructure\linked_list</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="priority_queue.h">
@@ -50,11 +56,14 @@
     <ClInclude Include="queue.h">
       <Filter>DataStructure\queue</Filter>
     </ClInclude>
-    <ClInclude Include="dsutils.h">
+    <ClInclude Include="dstypes.h">
       <Filter>common</Filter>
     </ClInclude>
     <ClInclude Include="stack.h">
       <Filter>DataStructure\stack</Filter>
+    </ClInclude>
+    <ClInclude Include="linkedlist.h">
+      <Filter>DataStructure\linked_list</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

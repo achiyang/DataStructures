@@ -1,7 +1,7 @@
 #ifndef QUEUE_H
 #define QUEUE_H
 
-#include "dsutils.h"
+#include "dstypes.h"
 
 /*
 	Queue 구조체:
@@ -17,20 +17,20 @@
 	- size: deque->cnt를 가리키는 포인터입니다. 큐에 남은 원소의 개수를 확인하는 용도로 사용됩니다.
 */
 typedef struct Queue {
-	void* deque;		// Deque 구조체 포인터
-	const int* cnt;		// 큐에 저장된 원소의 개수를 가리키는 포인터
+	void *deque;		// Deque 구조체 포인터
+	const int *cnt;		// 큐에 저장된 원소의 개수를 가리키는 포인터
 } Queue;
 
 /* 큐에 데이터를 삽입하는 함수 */
-void enqueue(Queue* queue, datap data);
+void enqueue(Queue *queue, datap data);
 
 /* 큐에서 데이터를 추출하는 함수 */
-datap dequeue(Queue* queue);
+datap dequeue(Queue *queue);
 
 /* 큐를 초기화하는 함수 */
-void initQueue(Queue* queue);
+void initQueue(Queue *queue);
 
 /* 큐를 해제하는 함수 */
-void destroyQueue(Queue* queue);
+void destroyQueue(Queue *queue);
 
 #endif

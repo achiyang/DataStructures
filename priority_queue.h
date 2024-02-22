@@ -1,20 +1,7 @@
 #ifndef PRIORITY_QUEUE_H
 #define	PRIORITY_QUEUE_H
 
-#include "dsutils.h"
-
-/*
-	comparePriorityFunc 함수 포인터:
-
-	이 함수 포인터는 데이터의 우선순위를 비교하는 함수를 가리키는 포인터입니다.
-	우선순위 큐에서 데이터의 우선순위를 비교하기 위해 사용됩니다.
-
-	함수는 datap 두 개를 입력받아 비교해 우선순위를 반환합니다.
-	- 첫 번째 요소의 우선순위가 두 번째 보다 클 경우 양수를 반환합니다.
-	- 반대의 경우 음수를 반환합니다.
-	- 우선순위가 같은 경우 0을 반환합니다.
-*/
-typedef int (*comparePriorityFunc)(datap, datap);
+#include "dstypes.h"
 
 /*
 	PriorityQueue 구조체:
@@ -34,22 +21,22 @@ typedef int (*comparePriorityFunc)(datap, datap);
 	- comparePriority: 우선순위를 비교하기 위한 함수의 포인터입니다.
 */
 typedef struct PriorityQueue {
-	datap* arr;		// 데이터를 저장하는 배열
+	datap *arr;		// 데이터를 저장하는 배열
 	int size;		// 우선순위 큐의 크기
 	int cnt;		// 우선순위 큐에 저장된 원소의 개수
-	comparePriorityFunc comparePriority;	// 우선순위 비교를 위한 함수 포인터
+	compareDatapFunc comparePriority;	// 우선순위 비교를 위한 함수 포인터
 } PriorityQueue;
 
 /* 우선순위 큐에 데이터를 삽입하는 함수 */
-void enpqueue(PriorityQueue* pqueue, datap data);
+void enpqueue(PriorityQueue *pqueue, datap data);
 
 /* 우선순위 큐에서 데이터를 추출하는 함수 */
-datap depqueue(PriorityQueue* pqueue);
+datap depqueue(PriorityQueue *pqueue);
 
 /* 우선순위 큐를 초기화하는 함수 */
-void initPriorityQueue(PriorityQueue* pqueue, comparePriorityFunc comparePriority);
+void initPriorityQueue(PriorityQueue *pqueue, compareDatapFunc comparePriority);
 
 /* 우선순위 큐를 해제하는 함수 */
-void destroyPriorityQueue(PriorityQueue* pqueue);
+void destroyPriorityQueue(PriorityQueue *pqueue);
 
 #endif // PRIORITY_QUEUE_H

@@ -4,7 +4,7 @@
 #define MIN_HEAP_SIZE 7
 
 /* 두 데이터를 교환하는 함수 */
-static void swap(datap* a, datap* b) {
+static void swap(datap *a, datap *b) {
 	datap temp;
 
 	temp = *a;
@@ -13,8 +13,8 @@ static void swap(datap* a, datap* b) {
 }
 
 /* 우선순위 큐의 배열 크기를 조정하는 함수 */
-static void resize(PriorityQueue* pqueue, int size) {
-	datap* temp_arr;
+static void resize(PriorityQueue *pqueue, int size) {
+	datap *temp_arr;
 
 	pqueue->size = size;
 
@@ -27,7 +27,7 @@ static void resize(PriorityQueue* pqueue, int size) {
 }
 
 /* 힙을 재구성해 우선순위를 유지하는 함수 */
-static void heapify(PriorityQueue* pqueue) {
+static void heapify(PriorityQueue *pqueue) {
 	int index;
 	int left, right, temp;
 
@@ -57,7 +57,7 @@ static void heapify(PriorityQueue* pqueue) {
 }
 
 /* 우선순위 큐에 데이터를 삽입하는 함수 */
-void enpqueue(PriorityQueue* pqueue, datap data) {
+void enpqueue(PriorityQueue *pqueue, datap data) {
 	int index;
 
 	/* 데이터의 수가 배열의 크기보다 크거나 같은 경우 크기를 조정 */
@@ -77,7 +77,7 @@ void enpqueue(PriorityQueue* pqueue, datap data) {
 }
 
 /* 우선순위 큐에서 데이터를 추출하는 함수 */
-datap depqueue(PriorityQueue* pqueue) {
+datap depqueue(PriorityQueue *pqueue) {
 	datap ret;
 
 	if (pqueue->cnt <= 0)
@@ -95,9 +95,9 @@ datap depqueue(PriorityQueue* pqueue) {
 }
 
 /* 우선순위 큐를 초기화하는 함수 */
-void initPriorityQueue(PriorityQueue* pqueue, comparePriorityFunc comparePriority) {
+void initPriorityQueue(PriorityQueue *pqueue, compareDatapFunc comparePriority) {
 	pqueue->size = MIN_HEAP_SIZE;
-	pqueue->arr = (datap*)malloc(sizeof(datap) * (pqueue->size + 1));
+	pqueue->arr = (datap *)malloc(sizeof(datap) * (pqueue->size + 1));
 	if (pqueue->arr == NULL)
 		exit(EXIT_FAILURE);
 	pqueue->cnt = 0;
@@ -105,7 +105,7 @@ void initPriorityQueue(PriorityQueue* pqueue, comparePriorityFunc comparePriorit
 }
 
 /* 우선순위 큐를 해제하는 함수 */
-void destroyPriorityQueue(PriorityQueue* pqueue) {
+void destroyPriorityQueue(PriorityQueue *pqueue) {
 	free(pqueue->arr);
 	pqueue->arr = NULL;
 	pqueue->size = 0;

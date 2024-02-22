@@ -1,7 +1,7 @@
 #ifndef DEQUE_H
 #define DEQUE_H
 
-#include "dsutils.h"
+#include "dstypes.h"
 
 /*
 	Deque 구조체:
@@ -18,7 +18,7 @@
 	- back: 가장 뒤 원소의 인덱스를 나타냅니다.
 */
 typedef struct Deque {
-	datap* arr;	// 데이터를 저장하는 배열
+	datap *arr;	// 데이터를 저장하는 배열
 	int size;	// 덱의 크기
 	int cnt;	// 덱에 저장된 원소의 개수
 	int front;	// 가장 앞 원소의 인덱스
@@ -26,21 +26,21 @@ typedef struct Deque {
 } Deque;
 
 /* 덱의 뒤에 데이터를 추가하는 함수 */
-void pushBackDeque(Deque* deque, datap data);
+void pushBackDeque(Deque *deque, datap data);
 
 /* 덱의 앞에 데이터를 추가하는 함수 */
-void pushFrontDeque(Deque* deque, datap data);
+void pushFrontDeque(Deque *deque, datap data);
 
 /* 덱의 뒤에서 데이터를 추출하는 함수 */
-datap popBackDeque(Deque* deque);
+datap popBackDeque(Deque *deque);
 
 /* 덱의 앞에서 데이터를 추출하는 함수 */
-datap popFrontDeque(Deque* deque);
+datap popFrontDeque(Deque *deque);
 
 /* 덱을 초기화하는 함수 */
-void initDeque(Deque* deque);
+void initDeque(Deque *deque);
 
 /* 덱을 해제하는 함수 */
-void destroyDeque(Deque* deque);
+void destroyDeque(Deque *deque);
 
 #endif

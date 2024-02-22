@@ -128,6 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="deque.c" />
+    <ClCompile Include="linkedlist.c" />
     <ClCompile Include="priority_queue.c" />
     <ClCompile Include="queue.c" />
     <ClCompile Include="stack.c" />
@@ -135,10 +136,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="deque.h" />
+    <ClInclude Include="linkedlist.h" />
     <ClInclude Include="priority_queue.h" />
     <ClInclude Include="queue.h" />
     <ClInclude Include="stack.h" />
-    <ClInclude Include="dsutils.h" />
+    <ClInclude Include="dstypes.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
