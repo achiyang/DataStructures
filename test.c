@@ -121,8 +121,8 @@ int main() {
 		freeList(&head);
 
 
-		for (uintptr_t i = 0; i < 10; i++) {
-			prependList(&head, (datap)i);
+		for (uintptr_t j = 0; j < 10; j++) {
+			prependList(&head, (datap)j);
 		}
 
 		int sum = 0, count = 0;
