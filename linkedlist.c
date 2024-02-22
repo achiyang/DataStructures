@@ -115,11 +115,11 @@ void prependList(ListNode **headRef, datap data) {
 	*headRef = new_node;
 }
 
-void forEachList(ListNode *head, ListCallback callback, void *args) {
+void forEachList(ListNode *head, ListCallback callback, void *params) {
 	int pos = 0;
 
 	while (head != NULL) {
-		callback(head->data, args);
+		callback(head->data, params);
 		head = head->next;
 	}
 }

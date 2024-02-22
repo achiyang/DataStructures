@@ -16,7 +16,7 @@ typedef struct ListNode {
 
 
 /* forEachList에서 사용되는 콜백 함수 정의 */
-typedef void (*ListCallback)(datap data, void *args);
+typedef void (*ListCallback)(datap data, void *params);
 
 
 /* 연결 리스트 정렬 */
@@ -42,7 +42,7 @@ void prependList(ListNode **headRef, datap data);
 
 	매개변수는 포인터, 배열, 포인터 배열 등으로 전달할 수 있음
 */
-void forEachList(ListNode *head, ListCallback callback, void *args);
+void forEachList(ListNode *head, ListCallback callback, void *params);
 
 
 /* 연결 리스트의 길이를 반환 */

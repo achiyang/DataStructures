@@ -24,16 +24,16 @@ static int comparePerson(datap a, datap b) {
 		return p2->age - p1->age;				// 나이가 적을수록 우선순위가 큼
 }
 
-static void printPerson(datap data, void *args) {
+static void printPerson(datap data, void *params) {
 	struct Person *p = data;
-	int *i = (int *)args;
+	int *i = (int *)params;
 
 	printf("%d : %s %d\n", (*i)++, p->name, p->age);
 }
 
-static void sumList(datap data, void *args) {
+static void sumList(datap data, void *params) {
 	int num = (int)(uintptr_t)data;
-	int *sum = ((int **)args)[0], *count = ((int **)args)[1];
+	int *sum = ((int **)params)[0], *count = ((int **)params)[1];
 
 	*sum += num;
 	++(*count);
@@ -126,8 +126,8 @@ int main() {
 		}
 
 		int sum = 0, count = 0;
-		int* args[] = { &sum, &count };
-		forEachList(head, sumList, args);
+		int* params[] = { &sum, &count };
+		forEachList(head, sumList, params);
 		printf("%d %d\n", count, sum);
 		printf("\n");
 
