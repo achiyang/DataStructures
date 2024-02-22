@@ -129,7 +129,7 @@
   <ItemGroup>
     <ClCompile Include="deque.c" />
     <ClCompile Include="linkedlist.c" />
-    <ClCompile Include="priority_queue.c" />
+    <ClCompile Include="pqueue.c" />
     <ClCompile Include="queue.c" />
     <ClCompile Include="stack.c" />
     <ClCompile Include="test.c" />
@@ -137,7 +137,7 @@
   <ItemGroup>
     <ClInclude Include="deque.h" />
     <ClInclude Include="linkedlist.h" />
-    <ClInclude Include="priority_queue.h" />
+    <ClInclude Include="pqueue.h" />
     <ClInclude Include="queue.h" />
     <ClInclude Include="stack.h" />
     <ClInclude Include="dstypes.h" />

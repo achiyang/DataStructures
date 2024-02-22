@@ -3,8 +3,9 @@
 #include <string.h>
 #include "deque.h"
 #include "queue.h"
-#include "priority_queue.h"
+#include "pqueue.h"
 #include "stack.h"
+#include "linkedlist.h"
 
 struct Person {
 	char name[10];
@@ -30,6 +31,7 @@ int main() {
 	pushFrontDeque(&deque, (datap)(intptr_t)1);
 	printf("popBackDeque: %lld\n", (intptr_t)popBackDeque(&deque));
 
+	printf("\n");
 	destroyDeque(&deque);
 
 
@@ -43,6 +45,7 @@ int main() {
 	while (*queue->cnt > 0)
 		printf("dequeue: %llu\n", (uintptr_t)dequeue(queue));
 
+	printf("\n");
 	destroyQueue(queue);
 	free(queue);
 
@@ -63,6 +66,7 @@ int main() {
 		printf("%s %d\n", temp->name, temp->age);
 	}
 
+	printf("\n");
 	destroyPriorityQueue(&pqueue);
 
 
@@ -71,10 +75,11 @@ int main() {
 
 	pushStack(&stack, comparePerson);
 	printf(
-		"comparePriority({ \"John\", 30 }, { \"John\", 20 }) = %d\n",
+		"comparePreson({ \"John\", 30 }, { \"John\", 20 }) = %d\n",
 		((compareDatapFunc)popStack(&stack))(&array[0], &array[1])
 	);
 
+	printf("\n");
 	destroyStack(&stack);
 
 	return 0;

@@ -109,5 +109,27 @@ void appendList(ListNode **headRef, datap data) {
 }
 
 void prependList(ListNode **headRef, datap data) {
-	*headRef = createNode(data)->next = *headRef;
+	ListNode *new_node = createNode(data);
+	new_node->next = *headRef;
+	*headRef = new_node;
+}
+
+void forEachList(ListNode *head, ListCallbackFunc callback) {
+	size_t index = 0;
+
+	while (head != NULL) {
+		callback(&head->data, index++);
+		head = head->next;
+	}
+}
+
+void freeList(ListNode **headRef) {
+	ListNode *curr = *headRef;
+	ListNode *temp;
+	while (curr != NULL) {
+		temp = curr;
+		curr = curr->next;
+		free(temp);
+	}
+	*headRef = NULL;
 }

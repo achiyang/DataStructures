@@ -27,7 +27,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="priority_queue.c">
+    <ClCompile Include="pqueue.c">
       <Filter>DataStructure\priority_queue</Filter>
     </ClCompile>
     <ClCompile Include="deque.c">
@@ -47,7 +47,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="priority_queue.h">
+    <ClInclude Include="pqueue.h">
       <Filter>DataStructure\priority_queue</Filter>
     </ClInclude>
     <ClInclude Include="deque.h">

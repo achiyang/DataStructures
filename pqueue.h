@@ -1,5 +1,5 @@
-#ifndef PRIORITY_QUEUE_H
-#define	PRIORITY_QUEUE_H
+#ifndef PQUEUE_H
+#define	PQUEUE_H
 
 #include "dstypes.h"
 
@@ -24,7 +24,7 @@ typedef struct PriorityQueue {
 	datap *arr;		// 데이터를 저장하는 배열
 	int size;		// 우선순위 큐의 크기
 	int cnt;		// 우선순위 큐에 저장된 원소의 개수
-	compareDatapFunc comparePriority;	// 우선순위 비교를 위한 함수 포인터
+	compareDatapFunc compare;	// 우선순위 비교를 위한 함수 포인터
 } PriorityQueue;
 
 /* 우선순위 큐에 데이터를 삽입하는 함수 */
@@ -34,9 +34,9 @@ void enpqueue(PriorityQueue *pqueue, datap data);
 datap depqueue(PriorityQueue *pqueue);
 
 /* 우선순위 큐를 초기화하는 함수 */
-void initPriorityQueue(PriorityQueue *pqueue, compareDatapFunc comparePriority);
+void initPriorityQueue(PriorityQueue *pqueue, compareDatapFunc compare);
 
 /* 우선순위 큐를 해제하는 함수 */
 void destroyPriorityQueue(PriorityQueue *pqueue);
 
-#endif // PRIORITY_QUEUE_H
+#endif // PQUEUE_H

@@ -1,5 +1,5 @@
 #include <stdlib.h>
-#include "priority_queue.h"
+#include "pqueue.h"
 
 #define MIN_HEAP_SIZE 7
 
@@ -38,11 +38,11 @@ static void heapify(PriorityQueue *pqueue) {
 		temp = index;
 
 		if (left <= pqueue->cnt &&
-			pqueue->comparePriority(pqueue->arr[left], pqueue->arr[temp]) > 0) {
+			pqueue->compare(pqueue->arr[left], pqueue->arr[temp]) < 0) {
 			temp = left;
 		}
 		if (right <= pqueue->cnt &&
-			pqueue->comparePriority(pqueue->arr[right], pqueue->arr[temp]) > 0) {
+			pqueue->compare(pqueue->arr[right], pqueue->arr[temp]) < 0) {
 			temp = right;
 		}
 
@@ -70,7 +70,7 @@ void enpqueue(PriorityQueue *pqueue, datap data) {
 
 	/* 우선순위를 유지하기 위해 배열을 조정 */
 	while (index > 1 &&
-		pqueue->comparePriority(pqueue->arr[index], pqueue->arr[index / 2]) > 0) {
+		pqueue->compare(pqueue->arr[index], pqueue->arr[index / 2]) < 0) {
 		swap(&pqueue->arr[index], &pqueue->arr[index / 2]);
 		index /= 2;
 	}
@@ -95,13 +95,13 @@ datap depqueue(PriorityQueue *pqueue) {
 }
 
 /* 우선순위 큐를 초기화하는 함수 */
-void initPriorityQueue(PriorityQueue *pqueue, compareDatapFunc comparePriority) {
+void initPriorityQueue(PriorityQueue *pqueue, compareDatapFunc compare) {
 	pqueue->size = MIN_HEAP_SIZE;
 	pqueue->arr = (datap *)malloc(sizeof(datap) * (pqueue->size + 1));
 	if (pqueue->arr == NULL)
 		exit(EXIT_FAILURE);
 	pqueue->cnt = 0;
-	pqueue->comparePriority = comparePriority;
+	pqueue->compare = compare;
 }
 
 /* 우선순위 큐를 해제하는 함수 */
