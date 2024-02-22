@@ -24,6 +24,19 @@ static int comparePerson(const datap a, const datap b) {
 		return p2->age - p1->age;				// 나이가 적을수록 우선순위가 큼
 }
 
+static void callback(datap data, size_t index, datap args[]) {
+	ListNode **head1Ref = (ListNode **)(args[0]);
+	ListNode **head2Ref = (ListNode **)(args[1]);
+
+	appendList(head1Ref, data);
+	appendList(head2Ref, data);
+}
+
+static void printPerson(datap data, size_t index, datap args[]) {
+	struct Person *p = data;
+	printf("%s %d\n", p->name, p->age);
+}
+
 int main() {
 	Deque deque;
 	initDeque(&deque);
@@ -81,6 +94,26 @@ int main() {
 
 	printf("\n");
 	destroyStack(&stack);
+
+
+	ListNode *head_1 = NULL;
+
+	for (int i = 0; i < 4; i++) {
+		appendList(&head_1, &array[i]);
+	}
+
+	ListNode *head_2 = NULL;
+	ListNode *head_3 = NULL;
+
+	datap args[] = { &head_2, &head_3 };
+	forEachList(head_1, callback, args);
+
+	forEachList(head_2, printPerson, NULL);
+	forEachList(head_3, printPerson, NULL);
+
+	freeList(&head_1);
+	freeList(&head_2);
+	freeList(&head_3);
 
 	return 0;
 }

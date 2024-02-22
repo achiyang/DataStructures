@@ -12,6 +12,13 @@
 */
 typedef void *datap;
 
+/*
+	데이터를 비교하는 함수
+
+	앞이 더 작은 경우 0보다 작은 값을 반환
+	반대의 경우 0보다 큰 값을 반환
+	같은 경우 0을 반환
+*/
 typedef int (*compareDatapFunc)(datap, datap);
 
 #endif // TYPES_H
