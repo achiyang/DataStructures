@@ -12,7 +12,7 @@ struct Person {
 	int age;
 };
 
-static int comparePerson(const datap a, const datap b) {
+static int comparePerson(datap a, datap b) {
 	struct Person *p1, *p2;
 
 	p1 = (struct Person *)a;
@@ -24,96 +24,115 @@ static int comparePerson(const datap a, const datap b) {
 		return p2->age - p1->age;				// 나이가 적을수록 우선순위가 큼
 }
 
-static void callback(datap data, size_t index, datap args[]) {
-	ListNode **head1Ref = (ListNode **)(args[0]);
-	ListNode **head2Ref = (ListNode **)(args[1]);
+static void printPerson(datap data, void *args) {
+	struct Person *p = data;
+	int *i = (int *)args;
 
-	appendList(head1Ref, data);
-	appendList(head2Ref, data);
+	printf("%d : %s %d\n", (*i)++, p->name, p->age);
 }
 
-static void printPerson(datap data, size_t index, datap args[]) {
-	struct Person *p = data;
-	printf("%s %d\n", p->name, p->age);
+static void sumList(datap data, void *args) {
+	int num = (int)(uintptr_t)data;
+	int *sum = ((int **)args)[0], *count = ((int **)args)[1];
+
+	*sum += num;
+	++(*count);
 }
 
 int main() {
-	Deque deque;
-	initDeque(&deque);
+	{
+		Deque deque;
+		initDeque(&deque);
 
-	pushFrontDeque(&deque, (datap)(intptr_t)1);
-	printf("popBackDeque: %lld\n", (intptr_t)popBackDeque(&deque));
+		pushFrontDeque(&deque, (datap)(intptr_t)1);
+		printf("popBackDeque: %lld\n", (intptr_t)popBackDeque(&deque));
 
-	printf("\n");
-	destroyDeque(&deque);
+		printf("\n");
+		destroyDeque(&deque);
+	}
 
+	{
+		Queue *queue = (Queue *)malloc(sizeof(Queue));
+		if (queue == NULL) exit(EXIT_FAILURE);
+		initQueue(queue);
 
-	Queue *queue = (Queue *)malloc(sizeof(Queue));
-	if (queue == NULL) exit(EXIT_FAILURE);
-	initQueue(queue);
+		for (uintptr_t i = 1; i <= 4; i++)
+			enqueue(queue, (datap)i);
 
-	for (uintptr_t i = 1; i <= 4; i++)
-		enqueue(queue, (datap)i);
+		while (*queue->cnt > 0)
+			printf("dequeue: %llu\n", (uintptr_t)dequeue(queue));
 
-	while (*queue->cnt > 0)
-		printf("dequeue: %llu\n", (uintptr_t)dequeue(queue));
-
-	printf("\n");
-	destroyQueue(queue);
-	free(queue);
-
-
-	PriorityQueue pqueue;
-	initPriorityQueue(&pqueue, comparePerson);
+		printf("\n");
+		destroyQueue(queue);
+		free(queue);
+	}
 
 	struct Person array[4] = {
 		{"John", 30}, {"John", 20},
 		{"Oliver", 35}, {"Harry", 25}
 	};
 
-	for (int i = 0; i < 4; i++)
-		enpqueue(&pqueue, &array[i]);
+	{
+		PriorityQueue pqueue;
+		initPriorityQueue(&pqueue, comparePerson);
 
-	while (pqueue.cnt > 0) {
-		struct Person *temp = depqueue(&pqueue);
-		printf("%s %d\n", temp->name, temp->age);
+		for (int i = 0; i < 4; i++)
+			enpqueue(&pqueue, &array[i]);
+
+		while (pqueue.cnt > 0) {
+			struct Person *temp = depqueue(&pqueue);
+			printf("%s %d\n", temp->name, temp->age);
+		}
+
+		printf("\n");
+		destroyPriorityQueue(&pqueue);
 	}
 
-	printf("\n");
-	destroyPriorityQueue(&pqueue);
+	{
+		Stack stack;
+		initStack(&stack);
 
+		pushStack(&stack, comparePerson);
+		printf(
+			"comparePreson({ \"John\", 30 }, { \"John\", 20 }) = %d\n",
+			((compareDatapFunc)popStack(&stack))(&array[0], &array[1])
+		);
 
-	Stack stack;
-	initStack(&stack);
-
-	pushStack(&stack, comparePerson);
-	printf(
-		"comparePreson({ \"John\", 30 }, { \"John\", 20 }) = %d\n",
-		((compareDatapFunc)popStack(&stack))(&array[0], &array[1])
-	);
-
-	printf("\n");
-	destroyStack(&stack);
-
-
-	ListNode *head_1 = NULL;
-
-	for (int i = 0; i < 4; i++) {
-		appendList(&head_1, &array[i]);
+		printf("\n");
+		destroyStack(&stack);
 	}
 
-	ListNode *head_2 = NULL;
-	ListNode *head_3 = NULL;
+	{
+		ListNode *head = NULL;
 
-	datap args[] = { &head_2, &head_3 };
-	forEachList(head_1, callback, args);
+		for (int i = 0; i < 4; i++) {
+			appendList(&head, &array[i]);
+		}
 
-	forEachList(head_2, printPerson, NULL);
-	forEachList(head_3, printPerson, NULL);
+		int i = 0;
+		forEachList(head, printPerson, &i);
+		printf("\n");
 
-	freeList(&head_1);
-	freeList(&head_2);
-	freeList(&head_3);
+		i = 0;
+		sortList(&head, comparePerson);
+		forEachList(head, printPerson, &i);
+		printf("\n");
+
+		freeList(&head);
+
+
+		for (uintptr_t i = 0; i < 10; i++) {
+			prependList(&head, (datap)i);
+		}
+
+		int sum = 0, count = 0;
+		int* args[] = { &sum, &count };
+		forEachList(head, sumList, args);
+		printf("%d %d\n", count, sum);
+		printf("\n");
+
+		freeList(&head);
+	}
 
 	return 0;
 }

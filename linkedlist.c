@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdio.h>
 #include <string.h>
 #include "linkedlist.h"
 
@@ -76,7 +77,7 @@ void sortList(ListNode **headRef, compareDatapFunc compare) {
 	*headRef = mergeList(front, back, compare);
 }
 
-void insertList(ListNode **headRef, datap data, size_t pos) {
+void insertList(ListNode **headRef, datap data, int pos) {
 	ListNode *new_node = createNode(data);
 
 	if (*headRef == NULL || pos == 0) {
@@ -114,13 +115,125 @@ void prependList(ListNode **headRef, datap data) {
 	*headRef = new_node;
 }
 
-void forEachList(ListNode *head, ListCallback callback, datap args[]) {
-	size_t index = 0;
+void forEachList(ListNode *head, ListCallback callback, void *args) {
+	int pos = 0;
 
 	while (head != NULL) {
-		callback(head->data, index++, args);
+		callback(head->data, args);
 		head = head->next;
 	}
+}
+
+int getListLength(ListNode *head) {
+	int length = 0;
+
+	while (head != NULL) {
+		++length;
+		head = head->next;
+	}
+
+	return length;
+}
+
+int findPosList(ListNode *head, datap data, compareDatapFunc compare) {
+	int pos = 0;
+
+	while (head != NULL) {
+		if (compare(data, head->data) == 0) {
+			return pos;
+		}
+		++pos;
+		head = head->next;
+	}
+	return -1;
+}
+
+void deleteListNodePos(ListNode **headRef, int pos) {
+	if (*headRef == NULL) {
+		return;
+	}
+
+	ListNode *node = *headRef;
+
+	if (pos == 0) {
+		*headRef = node->next;
+		free(node);
+		return;
+	}
+
+	for (int i = 0; node->next != NULL && ++i < pos;) {
+		node = node->next;
+	}
+
+	if (node->next == NULL) {
+		return;
+	}
+
+	ListNode *temp = node->next;
+	node->next = temp->next;
+	free(temp);
+}
+
+void deleteListNodeData(ListNode **headRef, datap data, compareDatapFunc compare) {
+	ListNode *curr = *headRef;
+	if (curr == NULL) {
+		return;
+	}
+
+	ListNode *prev = NULL;
+
+	while (curr != NULL) {
+		if (compare(curr, data) == 0) {
+			if (curr == *headRef) {
+				*headRef = curr->next;
+				free(curr);
+				return;
+			}
+			else {
+				prev->next = curr->next;
+				free(curr);
+				return;
+			}
+		}
+		prev = curr;
+		curr = curr->next;
+	}
+}
+
+ListNode *getListNodePos(ListNode *head, int pos) {
+	for (int i = 0; head != NULL && i < pos; i++) {
+		head = head->next;
+	}
+	return head;
+}
+
+ListNode *getListNodeData(ListNode *head, datap data, compareDatapFunc compare) {
+	while (head != NULL) {
+		if (compare(data, head->data) == 0) {
+			return head;
+		}
+		head = head->next;
+	}
+	return NULL;
+}
+
+void reverseList(ListNode **headRef) {
+	ListNode *curr = *headRef;
+	if (curr == NULL) {
+		return;
+	}
+
+	ListNode *prev = NULL;
+	ListNode *next;
+
+	while (curr != NULL) {
+		next = curr->next;
+		curr->next = prev;
+		prev = curr;
+		curr = next;
+	}
+
+	*headRef = prev;
 }
 
 void freeList(ListNode **headRef) {
