@@ -11,8 +11,69 @@ static ListNode *createNode(datap data) {
 	return new_node;
 }
 
+static ListNode *mergeList(ListNode *front, ListNode *back, compareDatapFunc compare) {
+	ListNode temp;
+	ListNode *curr = &temp;
+
+	while (front != NULL && back != NULL) {
+		if (compare(front->data, back->data) <= 0) {
+			curr->next = front;
+			curr = curr->next;
+			front = front->next;
+		}
+		else {
+			curr->next = back;
+			curr = curr->next;
+			back = back->next;
+		}
+	}
+
+	if (front == NULL) {
+		curr->next = back;
+	}
+	else {
+		curr->next = front;
+	}
+
+	return temp.next;
+}
+
+static void splitList(ListNode *source, ListNode **frontRef, ListNode **backRef) {
+	if (source == NULL || source->next == NULL) {
+		*frontRef = source;
+		*backRef = NULL;
+	}
+	else {
+		ListNode *slow = source;
+		ListNode *fast = source->next;
+
+		while (fast != NULL) {
+			fast = fast->next;
+			if (fast != NULL) {
+				fast = fast->next;
+				slow = slow->next;
+			}
+		}
+
+		*frontRef = source;
+		*backRef = slow->next;
+		slow->next = NULL;
+	}
+}
+
 void sortList(ListNode **headRef, compareDatapFunc compare) {
-	ListNode *a, *b;
+	if (*headRef == NULL || (*headRef)->next == NULL) {
+		return;
+	}
+
+	ListNode *front, *back;
+
+	splitList(*headRef, &front, &back);
+
+	sortList(&front, compare);
+	sortList(&back, compare);
+
+	*headRef = mergeList(front, back, compare);
 }
 
 void insertList(ListNode **headRef, datap data, size_t pos) {
