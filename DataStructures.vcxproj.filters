@@ -25,6 +25,9 @@
     <Filter Include="DataStructure\linked_list">
       <UniqueIdentifier>{859ab22a-1735-470a-9e43-7386fd70f9db}</UniqueIdentifier>
     </Filter>
+    <Filter Include="DataStructure\red-black_tree">
+      <UniqueIdentifier>{911308eb-4b5d-4275-bc4c-d0203b933eee}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pqueue.c">
@@ -45,6 +48,9 @@
     <ClCompile Include="linkedlist.c">
       <Filter>DataStructure\linked_list</Filter>
     </ClCompile>
+    <ClCompile Include="rbtree.c">
+      <Filter>DataStructure\red-black_tree</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pqueue.h">
@@ -64,6 +70,9 @@
     </ClInclude>
     <ClInclude Include="linkedlist.h">
       <Filter>DataStructure\linked_list</Filter>
+    </ClInclude>
+    <ClInclude Include="rbtree.h">
+      <Filter>DataStructure\red-black_tree</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
