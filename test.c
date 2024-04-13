@@ -6,6 +6,7 @@
 #include "pqueue.h"
 #include "stack.h"
 #include "linkedlist.h"
+#include "hashmap.h"
 
 struct Person {
 	char name[10];
@@ -24,11 +25,26 @@ static int comparePerson(datap a, datap b) {
 		return p2->age - p1->age;				// 나이가 적을수록 우선순위가 큼
 }
 
-static void printPerson(datap data, void *params) {
+static int comparePersonName(datap a, datap b) {
+	struct Person *p1, *p2;
+
+	p1 = (struct Person *)a;
+	p2 = (struct Person *)b;
+
+	return strcmp(p1->name, p2->name);
+}
+
+static void printPersonIndex(datap data, void *params) {
 	struct Person *p = data;
 	int *i = (int *)params;
 
 	printf("%d : %s %d\n", (*i)++, p->name, p->age);
+}
+
+static void printPerson(datap data) {
+	struct Person *p = data;
+
+	printf("{ \"%s\", %d }", p->name, p->age);
 }
 
 static void sumList(datap data, void *params) {
@@ -94,7 +110,7 @@ int main() {
 
 		pushStack(&stack, comparePerson);
 		printf(
-			"comparePreson({ \"John\", 30 }, { \"John\", 20 }) = %d\n",
+			"comparePerson({ \"John\", 30 }, { \"John\", 20 }) = %d\n",
 			((compareDatapFunc)popStack(&stack))(&array[0], &array[1])
 		);
 
@@ -110,12 +126,12 @@ int main() {
 		}
 
 		int i = 0;
-		forEachList(head, printPerson, &i);
+		forEachList(head, printPersonIndex, &i);
 		printf("\n");
 
 		i = 0;
 		sortList(&head, comparePerson);
-		forEachList(head, printPerson, &i);
+		forEachList(head, printPersonIndex, &i);
 		printf("\n");
 
 		freeList(&head);
@@ -125,13 +141,34 @@ int main() {
 			prependList(&head, (datap)j);
 		}
 
-		int sum = 0, count = 0;
-		int* params[] = { &sum, &count };
+		int count = 0, sum = 0;
+		int* params[] = { &count, &sum };
 		forEachList(head, sumList, params);
 		printf("%d %d\n", count, sum);
 		printf("\n");
 
 		freeList(&head);
+	}
+
+	{
+		HashMap hashmap;
+		initHashMap(&hashmap);
+
+		for (int i = 0; i < 4; i++) {
+			char key[2] = { 0 };
+			key[0] = 'a' + i;
+			putHashMap(&hashmap, key, &array[i]);
+		}
+		printHashMap(&hashmap, printPerson);
+
+		putHashMap(&hashmap, "c", &(struct Person){ "Kim", 40 });
+		printHashMap(&hashmap, printPerson);
+
+		removeHashMapKey(&hashmap, "d");
+		printHashMap(&hashmap, printPerson);
+
+		removeHashMapValue(&hashmap, &(struct Person){ "John", 0 }, comparePersonName);
+		printHashMap(&hashmap, printPerson);
 	}
 
 	return 0;

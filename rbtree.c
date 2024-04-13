@@ -132,13 +132,13 @@ void insertRBTree(RBTree *tree, datap data) {
 	while (current != NULL) {
 		parent = current;
 
-		if (compare(data, current->data) < 0)
+		if (tree->compare(data, current->data) < 0)
 			current = current->left;
 		else
 			current = current->right;
 	}
 
-	if (compare(data, parent->data) < 0)
+	if (tree->compare(data, parent->data) < 0)
 		parent->left = newNode;
 	else
 		parent->right = newNode;

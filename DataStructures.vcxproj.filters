@@ -28,6 +28,9 @@
     <Filter Include="DataStructure\red-black_tree">
       <UniqueIdentifier>{911308eb-4b5d-4275-bc4c-d0203b933eee}</UniqueIdentifier>
     </Filter>
+    <Filter Include="DataStructure\hashmap">
+      <UniqueIdentifier>{7f38d8b1-aa56-4515-8e34-a8af447966dc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pqueue.c">
@@ -51,6 +54,9 @@
     <ClCompile Include="rbtree.c">
       <Filter>DataStructure\red-black_tree</Filter>
     </ClCompile>
+    <ClCompile Include="hashmap.c">
+      <Filter>DataStructure\hashmap</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pqueue.h">
@@ -73,6 +79,9 @@
     </ClInclude>
     <ClInclude Include="rbtree.h">
       <Filter>DataStructure\red-black_tree</Filter>
+    </ClInclude>
+    <ClInclude Include="hashmap.h">
+      <Filter>DataStructure\hashmap</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
